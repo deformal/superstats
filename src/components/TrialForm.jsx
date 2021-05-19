@@ -1,56 +1,87 @@
 import React from "react";
-import { datafetcher } from "../fetcher";
-import { useState } from "react";
+import { datafetcher } from "./fetcher.js";
+import { useState, useEffect } from "react";
 export default function TrialForm() {
-  let [userDetails, setUserDetails] = useState({
+  let [state, setState] = useState({
     email: "",
     password: "",
+    loggedIn: "",
   });
-  function changeHandler(event) {
+  useEffect(() => {
+    if (state.loggedIn)
+      document.getElementById("title").innerText = state.email;
+  });
+
+  const messageShow = (message) => {
+    document.getElementById("msg").innerText = message;
+    setTimeout(() => {
+      document.getElementById("msg").innerText = "";
+    }, 5000);
+  };
+
+  const changeHandler = (event) => {
     event.preventDefault();
     let value = event.target.value;
     let name = event.target.name;
-    setUserDetails((prevValues) => {
+    setState((prevValues) => {
       return {
         ...prevValues,
         [name]: value,
       };
     });
-  }
+  };
 
-  async function submitHandler(event) {
+  const submitHandler = async (event) => {
     event.preventDefault();
-    const query = `query Signuper($email:String! ,$pass: String!) {
-         signup(email:$email,password:$pass){
+    const query = `query Loggerr($email:String! ,$password:String!) {
+         login(email:$email,password:$password){
          email
          password
         }
       }`;
-    const response = await datafetcher(query, userDetails);
-    const body = JSON.stringify(response);
-    const result = await JSON.parse(body);
-    if (result.data) console.log(result.data);
-    console.log(result.errors[0].message); //errors path
-  }
+    const { email, password } = state;
+    const response = await datafetcher(query, { email, password });
+    if (response.status === 200) {
+      setState((prevValues) => {
+        return {
+          ...prevValues,
+          email: response.data.login.email,
+          loggedIn: true,
+        };
+      });
+      messageShow(`${response.message}`);
+    }
+    messageShow(`${response.error}`);
+  };
 
   return (
     <div>
+      <h1 id="title">Hello</h1>
       <form onSubmit={submitHandler}>
         <input
           type="text"
           placeholder="Email"
           name="email"
+          autoComplete=""
           onChange={changeHandler}
         />
+        <br />
+        <label htmlFor="password">
+          A valid password will be:- minimun 8 characters, Uppsercase,lowercase
+          and a number
+        </label>
+        <br />
         <input
           type="password"
           placeholder="Password"
           name="password"
+          autoComplete=""
           onChange={changeHandler}
         />
         <br />
         <button type="submit">Submit</button>
       </form>
+      <h6 id="msg">{""}</h6>
     </div>
   );
 }
