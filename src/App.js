@@ -1,9 +1,10 @@
 import React from "react";
-import TrialForm from "./components/TrialForm.jsx";
+import Login from "./components/Login";
+import "./Css/main.css";
 export default function App() {
   return (
     <div>
-      <TrialForm />
+      <Login />
     </div>
   );
 }

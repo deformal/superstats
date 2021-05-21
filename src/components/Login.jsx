@@ -1,23 +1,16 @@
+/* eslint-disable eqeqeq */
 import React from "react";
 import { datafetcher } from "./fetcher.js";
 import { useState, useEffect } from "react";
-export default function TrialForm() {
+import Modals from "./Modals";
+export default function Login() {
   let [state, setState] = useState({
     email: "",
     password: "",
-    loggedIn: "",
+    loggedIn: false,
+    showError: false,
+    message: "",
   });
-  useEffect(() => {
-    if (state.loggedIn)
-      document.getElementById("title").innerText = state.email;
-  });
-
-  const messageShow = (message) => {
-    document.getElementById("msg").innerText = message;
-    setTimeout(() => {
-      document.getElementById("msg").innerText = "";
-    }, 5000);
-  };
 
   const changeHandler = (event) => {
     event.preventDefault();
@@ -41,7 +34,7 @@ export default function TrialForm() {
       }`;
     const { email, password } = state;
     const response = await datafetcher(query, { email, password });
-    if (response.status === 200) {
+    if (response.status == 200) {
       setState((prevValues) => {
         return {
           ...prevValues,
@@ -49,14 +42,19 @@ export default function TrialForm() {
           loggedIn: true,
         };
       });
-      messageShow(`${response.message}`);
+    } else {
+      setState((prevValues) => {
+        return {
+          ...prevValues,
+          showError: true,
+          message: response.error,
+        };
+      });
     }
-    messageShow(`${response.error}`);
   };
-
   return (
-    <div>
-      <h1 id="title">Hello</h1>
+    <div className="login">
+      <h1 id="title">Login</h1>
       <form onSubmit={submitHandler}>
         <input
           type="text"
@@ -65,12 +63,10 @@ export default function TrialForm() {
           autoComplete=""
           onChange={changeHandler}
         />
-        <br />
         <label htmlFor="password">
-          A valid password will be:- minimun 8 characters, Uppsercase,lowercase
+          A valid password will be minimun 8 characters, Uppsercase,lowercase
           and a number
         </label>
-        <br />
         <input
           type="password"
           placeholder="Password"
@@ -78,10 +74,9 @@ export default function TrialForm() {
           autoComplete=""
           onChange={changeHandler}
         />
-        <br />
         <button type="submit">Submit</button>
       </form>
-      <h6 id="msg">{""}</h6>
+      {state.showError ? <Modals message={state.message} /> : ""}
     </div>
   );
 }

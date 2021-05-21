@@ -18,7 +18,7 @@ async function datafetcher(query, { email, password }) {
       const body = await response.text();
       const result = await JSON.parse(body);
       const pack = {
-        message: `Success`,
+        message: "Success",
         status: 200,
         data: result.data,
       };
@@ -27,7 +27,7 @@ async function datafetcher(query, { email, password }) {
     const body = await response.text();
     const result = await JSON.parse(body);
     const pack = {
-      message: `Error`,
+      message: "Error Invalid Input",
       status: 400,
       error: result.errors,
     };
