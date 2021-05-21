@@ -1,50 +1,122 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
+
 $fontFamily: "Roboto", sans-serif;
 $secondaryFont: "Poppins", sans-serif;
-$fontcolor: #393e46;
-$fontcolorSecondary: white;
-$lableBackColor: #eeeeee;
-$infoColor: #ce1212;
+// $newFontFam: "Roboto Mono", monospace;
+$newFontFam: "exo";
+$fontcolor: #e5e5e5;
+$fontcolor2: black;
+$lableBackColor: #323232;
+$successColor: #54e346;
+$errorColor: #ce1212;
+$loginBack: black;
+$signupbtnback: #ff1e56;
+$loginbtnback: #ff1e56;
+$btnTransitionclr: #ffac41;
+
+#error {
+  display: none;
+}
+
+.success {
+  width: 5vw;
+  color: $fontcolor;
+  font-family: $newFontFam;
+  font-weight: 500;
+  font-size: 1vw;
+  background-color: rgba($color: $successColor, $alpha: 1);
+  padding: 20px;
+  position: fixed;
+  bottom: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.error {
+  color: $fontcolor;
+  font-family: $newFontFam;
+  font-size: 1vw;
+  font-weight: 500;
+  background-color: rgba($color: $errorColor, $alpha: 1);
+  padding: 20px;
+  position: fixed;
+  bottom: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#welcome {
+  position: absolute;
+  margin-top: 0;
+  margin-left: 40rem;
+  font-family: $fontFamily;
+  h1 {
+    font-size: 8vw;
+    margin-bottom: 0;
+  }
+  .infotext {
+    width: 50vw;
+    text-align: left;
+    p {
+      font-size: 1vw;
+    }
+  }
+}
+
 .login {
   display: grid;
   place-items: center;
-  font-family: $secondaryFont;
   border: none;
+  margin-top: 10rem;
   border-radius: 10px;
-  margin-right: 30vw;
-  margin-left: 30vw;
-
-  #modal {
-    display: none;
-    //   position: absolute;
-    z-index: 1;
-    //    margin-left: 10vw;
-    margin-top: 20px;
-    #modalInside {
-      padding: 20px;
-      color: $infoColor;
-      font-size: 0.7vw;
-      border-radius: 10px;
-      background-color: rgba($color: #ce1212, $alpha: 0.8);
-      color: white;
-      width: 15vw;
-      text-align: center;
-    }
+  width: 30vw;
+  border-radius: 10px;
+  background-color: $loginBack;
+  padding-bottom: 30px;
+  #signupButton {
+    margin-top: 0px;
+    width: 21vw;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: $signupbtnback;
+    color: $fontcolor;
+    font-size: 1.5vw;
+    font-family: $newFontFam;
+    cursor: pointer;
+    transition: background-color 500ms;
   }
+  #signupButton:hover {
+    background-color: $btnTransitionclr;
+  }
+  hr {
+    margin-top: 30px;
+    width: 21vw;
+    border-bottom: solid $fontcolor 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
   #title {
     font-size: 5vw;
     color: $fontcolor;
+    font-family: $newFontFam;
   }
   label {
     text-align: center;
     border: none;
     background-color: $lableBackColor;
     color: $fontcolor;
+    font-family: $newFontFam;
     padding: 10px;
     border-radius: 5px;
     font-size: 0.8vw;
-    width: 15vw;
+    width: 20vw;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   input {
@@ -55,23 +127,107 @@ $infoColor: #ce1212;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
+    transition: $lableBackColor 300ms;
+  }
+  input:focus {
+    font-family: $fontFamily;
   }
   form {
     display: grid;
     place-items: left;
   }
-  button {
+  #loginButton {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: $fontcolor;
-    color: $fontcolorSecondary;
+    background-color: $loginbtnback;
+    color: $fontcolor;
     font-size: 1.5vw;
     width: 10vw;
+    font-family: $newFontFam;
     transition: background-color 500ms;
   }
-  button:hover {
+  #loginButton:hover {
     cursor: pointer;
-    background-color: black;
+    background-color: $btnTransitionclr;
   }
+}
+
+.footer {
+  text-align: center;
+  margin-top: 6%;
+  h6 {
+    font-size: 0.8vw;
+    font-family: $newFontFam;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+}
+
+/* Cool infinite background scrolling animation.
+ * Twitter: @kootoopas
+ */
+
+/* Exo thin font from Google. */
+
+/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
+$bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
+$bg-width: 50px;
+$bg-height: 50px;
+
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: $bg-width $bg-height;
+  }
+}
+
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: $bg-width $bg-height;
+  }
+}
+
+/* Main styles */
+body {
+  color: #999;
+  background: url($bg-url) repeat 0 0;
+  -webkit-animation: bg-scrolling-reverse 0.92s infinite; /* Safari 4+ */
+  -moz-animation: bg-scrolling-reverse 0.92s infinite; /* Fx 5+ */
+  -o-animation: bg-scrolling-reverse 0.92s infinite; /* Opera 12+ */
+  animation: bg-scrolling-reverse 0.92s infinite; /* IE 10+ */
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
 }

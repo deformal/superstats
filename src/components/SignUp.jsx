@@ -2,7 +2,6 @@
 import React from "react";
 import { datafetcher } from "./fetcher.js";
 import { useState, useEffect } from "react";
-import Footer from "./Footer";
 export default function Login() {
   let [state, setState] = useState({
     email: "",
@@ -68,28 +67,8 @@ export default function Login() {
   };
   return (
     <>
-      <div id="welcome">
-        <h1>WELCOME</h1>
-        <p className="infotext">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
-        </p>
-      </div>
-
       <div className="login">
-        <h1 id="title">Login</h1>
+        <h1 id="title">Signup</h1>
         <form onSubmit={submitHandler}>
           <input
             type="text"
@@ -109,17 +88,12 @@ export default function Login() {
             autoComplete=""
             onChange={changeHandler}
           />
-          <button id="loginButton" type="submit">
-            Log In
-          </button>
+          <button type="submit">Submit</button>
         </form>
-        <hr />
-        <button id="signupButton">Sign Up </button>
-        <h5 id="error" className="">
-          {}
-        </h5>
       </div>
-      <Footer />
+      <h5 id="error" className="">
+        {}
+      </h5>
     </>
   );
 }
