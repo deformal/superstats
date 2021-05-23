@@ -2,7 +2,8 @@
 import React from "react";
 import { datafetcher } from "./fetcher.js";
 import { useState, useEffect } from "react";
-export default function Login() {
+import { Link } from "react-router-dom";
+export default function SignUp() {
   let [state, setState] = useState({
     email: "",
     password: "",
@@ -39,8 +40,8 @@ export default function Login() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    const query = `query Loggerr($email:String! ,$password:String!) {
-         login(email:$email,password:$password){
+    const query = `query Signuper($email:String! ,$password:String!) {
+         signup(email:$email,password:$password){
          email
          password
         }
@@ -51,7 +52,7 @@ export default function Login() {
       setState((prevValues) => {
         return {
           ...prevValues,
-          email: response.data.login.email,
+          email: response.data.signup.email,
           message: response.message,
           loggedIn: true,
         };
@@ -67,6 +68,26 @@ export default function Login() {
   };
   return (
     <>
+      <div id="welcome">
+        <h1>WELCOME</h1>
+        <p className="infotext">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+          mollit anim id est laborum.
+        </p>
+      </div>
+
       <div className="login">
         <h1 id="title">Signup</h1>
         <form onSubmit={submitHandler}>
@@ -88,12 +109,18 @@ export default function Login() {
             autoComplete=""
             onChange={changeHandler}
           />
-          <button type="submit">Submit</button>
+          <button id="loginButton" type="submit">
+            Sign Up
+          </button>
         </form>
+        <hr />
+        <Link to="/">
+          <button id="signupButton">Log In</button>
+        </Link>
+        <h5 id="error" className="">
+          {}
+        </h5>
       </div>
-      <h5 id="error" className="">
-        {}
-      </h5>
     </>
   );
 }

@@ -2,8 +2,8 @@
 import React from "react";
 import { datafetcher } from "./fetcher.js";
 import { useState, useEffect } from "react";
-import Footer from "./Footer";
-export default function Login() {
+import { Link } from "react-router-dom";
+function Login() {
   let [state, setState] = useState({
     email: "",
     password: "",
@@ -66,6 +66,7 @@ export default function Login() {
       showMessage({ message, type });
     }
   };
+
   return (
     <>
       <div id="welcome">
@@ -114,12 +115,14 @@ export default function Login() {
           </button>
         </form>
         <hr />
-        <button id="signupButton">Sign Up </button>
+        <Link to="/signup">
+          <button id="signupButton">Sign Up</button>
+        </Link>
         <h5 id="error" className="">
           {}
         </h5>
       </div>
-      <Footer />
     </>
   );
 }
+export default Login;

@@ -18,6 +18,74 @@ $signupbtnback: #ff1e56;
 $loginbtnback: #ff1e56;
 $btnTransitionclr: #ffac41;
 
+/* Cool infinite background scrolling animation.
+ * Twitter: @kootoopas
+ */
+
+/* Exo thin font from Google. */
+
+/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
+$bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
+$bg-width: 50px;
+$bg-height: 50px;
+
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: $bg-width $bg-height;
+  }
+}
+
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+    background-position: $bg-width $bg-height;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: $bg-width $bg-height;
+  }
+}
+
+/* Main styles */
+body {
+  color: #999;
+  background: url($bg-url) repeat 0 0;
+  -webkit-animation: bg-scrolling-reverse 0.92s infinite; /* Safari 4+ */
+  -moz-animation: bg-scrolling-reverse 0.92s infinite; /* Fx 5+ */
+  -o-animation: bg-scrolling-reverse 0.92s infinite; /* Opera 12+ */
+  animation: bg-scrolling-reverse 0.92s infinite; /* IE 10+ */
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
 #error {
   display: none;
 }
@@ -49,20 +117,18 @@ $btnTransitionclr: #ffac41;
 }
 
 #welcome {
-  position: absolute;
   margin-top: 0;
-  margin-left: 40rem;
+  position: absolute;
+  margin-left: 35%;
   font-family: $fontFamily;
   h1 {
     font-size: 8vw;
     margin-bottom: 0;
   }
   .infotext {
-    width: 50vw;
+    width: 83%;
     text-align: left;
-    p {
-      font-size: 1vw;
-    }
+    font-size: 1vw;
   }
 }
 
@@ -70,12 +136,12 @@ $btnTransitionclr: #ffac41;
   display: grid;
   place-items: center;
   border: none;
-  margin-top: 10rem;
+  margin-top: 5%;
   border-radius: 10px;
   width: 30vw;
   border-radius: 10px;
   background-color: $loginBack;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
   #signupButton {
     margin-top: 0px;
     width: 21vw;
@@ -154,8 +220,9 @@ $btnTransitionclr: #ffac41;
 }
 
 .footer {
+  margin-top: 18 vh;
+
   text-align: center;
-  margin-top: 6%;
   h6 {
     font-size: 0.8vw;
     font-family: $newFontFam;
@@ -164,70 +231,91 @@ $btnTransitionclr: #ffac41;
   }
 }
 
-/* Cool infinite background scrolling animation.
- * Twitter: @kootoopas
- */
+@media only screen and (max-width: 1000px) {
+  body {
+    display: grid;
+    place-items: center;
+  }
+  .login {
+    margin-top: 0;
+    #title {
+      font-size: 6vw;
+    }
+    width: 50vw;
+    input {
+      width: 30vw;
+    }
+    label {
+      font-size: 1.2vw;
+      width: 30vw;
+    }
+    #loginButton {
+      font-size: 2vw;
+      width: 15vw;
+    }
+    hr {
+      width: 30vw;
+    }
+    s #signupButton {
+      font-size: 2vw;
+      width: 15vw;
+    }
+  }
+  #welcome {
+    // text-align: center;
+    // margin-left: 10px;
+    // margin-top: 100%;
+    display: none;
+  }
 
-/* Exo thin font from Google. */
-
-/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
-$bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
-$bg-width: 50px;
-$bg-height: 50px;
-
-/* Animations */
-@-webkit-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: $bg-width $bg-height;
-  }
-}
-@-moz-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: $bg-width $bg-height;
-  }
-}
-@-o-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: $bg-width $bg-height;
-  }
-}
-@keyframes bg-scrolling-reverse {
-  100% {
-    background-position: $bg-width $bg-height;
-  }
-}
-
-@-webkit-keyframes bg-scrolling {
-  0% {
-    background-position: $bg-width $bg-height;
-  }
-}
-@-moz-keyframes bg-scrolling {
-  0% {
-    background-position: $bg-width $bg-height;
-  }
-}
-@-o-keyframes bg-scrolling {
-  0% {
-    background-position: $bg-width $bg-height;
-  }
-}
-@keyframes bg-scrolling {
-  0% {
-    background-position: $bg-width $bg-height;
+  .footer {
+    margin-top: 20vh;
+    h6 {
+      text-align: center;
+      font-size: 1.4vw;
+    }
   }
 }
 
-/* Main styles */
-body {
-  color: #999;
-  background: url($bg-url) repeat 0 0;
-  -webkit-animation: bg-scrolling-reverse 0.92s infinite; /* Safari 4+ */
-  -moz-animation: bg-scrolling-reverse 0.92s infinite; /* Fx 5+ */
-  -o-animation: bg-scrolling-reverse 0.92s infinite; /* Opera 12+ */
-  animation: bg-scrolling-reverse 0.92s infinite; /* IE 10+ */
-  -webkit-animation-timing-function: linear;
-  -moz-animation-timing-function: linear;
-  -o-animation-timing-function: linear;
-  animation-timing-function: linear;
+@media only screen and (max-width: 700px) {
+  body {
+    display: grid;
+    place-items: center;
+  }
+  .login {
+    margin-top: 4vh;
+    #title {
+      font-size: 8vw;
+    }
+    width: 70vw;
+    input {
+      width: 50vw;
+    }
+    label {
+      font-size: 2vw;
+      width: 50vw;
+    }
+    #loginButton {
+      font-size: 3vw;
+      width: 20vw;
+    }
+    hr {
+      width: 50vw;
+    }
+    #signupButton {
+      font-size: 3vw;
+      width: 50vw;
+    }
+  }
+  #welcome {
+    display: none;
+  }
+
+  .footer {
+    margin-top: 30vh;
+    h6 {
+      text-align: center;
+      font-size: 2vw;
+    }
+  }
 }
