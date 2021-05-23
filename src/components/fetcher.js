@@ -1,7 +1,7 @@
 const fetch = require("isomorphic-fetch");
 async function datafetcher(query, { email, password }) {
   try {
-    const response = await fetch(`http://localhost:8080/user`, {
+    const response = await fetch("http://192.168.1.12:8080/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

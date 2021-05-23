@@ -4,6 +4,8 @@ import SignUp from "./components/SignUp";
 import Footer from "./components/Footer";
 import "./Css/main.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import dotenv from "dotenv";
+dotenv.config();
 export default function App() {
   return (
     <Router>
